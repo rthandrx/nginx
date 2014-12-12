@@ -8,8 +8,8 @@
 
     listen <%= node['nginx']['port'] %> default;
 
-    access_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.access.log main;
-    error_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.error.log debug;
+    access_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.access.log;
+    error_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.error.log;
 
     <% if node['nginx']['server_name'] -%>
     server_name ~^<%= node['nginx']['server_name'] %>\..*$;
