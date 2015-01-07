@@ -4,8 +4,8 @@
 
     <% if node['nginx']['sts_max_age'] -%>
     add_header Strict-Transport-Security "max-age=<%= node['nginx']['sts_max_age'] %>";
-    <% end -%>
 
+    <% end -%>
     listen <%= node['nginx']['port'] %> default;
 
     access_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['socketproxy']['logname'] %>.access.log;
@@ -13,8 +13,8 @@
 
     <% if node['nginx']['server_name'] -%>
     server_name ~^<%= node['nginx']['server_name'] %>\..*$;
-    <% end -%>
 
+    <% end -%>
     client_max_body_size 4G;
     keepalive_timeout 5;
 
@@ -36,9 +36,7 @@
         base_loc = ""
       end
     -%>
-
     location ^~ /<%= app_conf['context_name'] %> {
-
       proxy_read_timeout 600;
       <%
         if app_conf['socket']['type']
@@ -58,12 +56,11 @@
       <%
         end
       -%>
-
     }
 
     <% end # node['nginx']['socketproxy']['apps'].each -%>
-
     error_page 500 502 504 /50x.html;
+
     location = /50x.html {
       root html;
     }
