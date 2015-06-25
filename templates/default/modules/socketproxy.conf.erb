@@ -30,7 +30,7 @@
     }
     
     location / {
-     return 200 '<%= node['nginx']['defaultReturn'] %> ';
+     return 200 '<%= node['nginx']['socketproxy']['defaultReturn'] %> ';
      add_header Content-Type application/json;
     }
     <% node['nginx']['socketproxy']['apps'].each do |app, app_conf|
