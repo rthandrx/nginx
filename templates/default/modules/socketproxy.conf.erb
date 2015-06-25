@@ -29,10 +29,16 @@
       return 405;
     }
     
+    <% if node['nginx']['socketproxy']['defaultReturn'] -%>
     location / {
      return 200 '<%= node['nginx']['socketproxy']['defaultReturn'] %> ';
      add_header Content-Type application/json;
+     add_header 'Access-Control-Allow-Origin' '*';
+     add_header 'Access-Control-Allow-Credentials' 'true';
+     add_header 'Access-Control-Allow-Methods' 'GET';
     }
+    
+    <% end -%>
     <% node['nginx']['socketproxy']['apps'].each do |app, app_conf|
       if app_conf['context_name']
         base_loc = "/#{app_conf['context_name'].gsub(/^\/+/,'').gsub(/\/+$/,'')}"
