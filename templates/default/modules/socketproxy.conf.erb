@@ -30,7 +30,7 @@
     }
     
     <% if node['nginx']['socketproxy']['defaultReturn'] -%>
-    location / {
+    location = /health {
      return 200 '<%= node['nginx']['socketproxy']['defaultReturn'] %> ';
      add_header Content-Type application/json;
      add_header 'Access-Control-Allow-Origin' '*';
