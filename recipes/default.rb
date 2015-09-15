@@ -20,11 +20,10 @@
 #
 
 file node['nginx']['pid']  do
-  content '00000'
   owner 'root'
   group 'root'
   mode '644'
-  action :create_if_missing
+  action :touch
 end
 
 include_recipe "nginx::#{node['nginx']['install_method']}"
