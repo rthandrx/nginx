@@ -43,14 +43,6 @@ package node['nginx']['package_name'] do
   not_if 'which nginx'
 end
 
-file node['nginx']['pid']  do
-  content '00000'
-  owner 'root'
-  group 'root'
-  mode '0755'
-  action :create_if_missing
-end
-
 service 'nginx' do
   supports :status => true, :restart => true, :reload => true
   action   :enable
