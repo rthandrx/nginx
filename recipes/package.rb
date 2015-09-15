@@ -43,7 +43,8 @@ package node['nginx']['package_name'] do
   not_if 'which nginx'
 end
 
-directory node['nginx']['pid']  do
+file node['nginx']['pid']  do
+  content '00000'
   owner 'root'
   group 'root'
   mode '0755'
