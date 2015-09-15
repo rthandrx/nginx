@@ -48,7 +48,7 @@ file node['nginx']['pid']  do
   owner 'root'
   group 'root'
   mode '0755'
-  action :create
+  action :create_if_missing
 end
 
 service 'nginx' do
