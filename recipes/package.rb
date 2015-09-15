@@ -43,6 +43,13 @@ package node['nginx']['package_name'] do
   not_if 'which nginx'
 end
 
+directory node['nginx']['pid']  do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
 service 'nginx' do
   supports :status => true, :restart => true, :reload => true
   action   :enable
