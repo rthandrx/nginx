@@ -19,6 +19,14 @@
 # limitations under the License.
 #
 
+file node['nginx']['pid']  do
+  content '00000'
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create_if_missing
+end
+
 include_recipe "nginx::#{node['nginx']['install_method']}"
 
 service 'nginx' do
